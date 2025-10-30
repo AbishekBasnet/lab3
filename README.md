@@ -1,14 +1,15 @@
-# 🎮 Hangman Game Project
+# This app is made with the help of copilot
+#  Hangman Game Project
 
 A modern, interactive Hangman word-guessing game built with multiple technologies and featuring virtual keyboards, dual game modes, and beautiful Material Design UI.
 
-## 🌟 Live Demo
+##  Live Demo
 
-**� Play Online Now**: [https://abishekbasnet.github.io/hangman/](https://abishekbasnet.github.io/hangman/)
+** Play Online Now**: https://abishekbasnet.github.io/lab3/game.html
 
 *Experience the full game in your browser with no downloads required!*
 
-## �📋 Table of Contents
+##  Table of Contents
 
 - [Live Demo](#-live-demo)
 - [Features](#-features)
@@ -22,10 +23,10 @@ A modern, interactive Hangman word-guessing game built with multiple technologie
 - [Development](#-development)
 - [Contributing](#-contributing)
 
-## ✨ Features
+##  Features
 
-### 🎯 **Core Game Features**
-- **250+ Programming Words**: Extensive vocabulary including Flutter, Dart, and programming terms
+###  **Core Game Features**
+- ** Programming Words**: Extensive vocabulary including Flutter, Dart, and programming terms
 - **Dual Input Modes**: Switch between letter-by-letter and whole-word guessing
 - **Smart Word Tracking**: Prevents recent word repetition for varied gameplay
 - **Visual Progress Tracking**: Real-time display of correct/incorrect guesses
@@ -37,13 +38,13 @@ A modern, interactive Hangman word-guessing game built with multiple technologie
 - **Color-Coded Feedback**: Green (correct), Red (wrong), Gray (used)
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 
-### 🎨 **UI/UX Design**
+###  **UI/UX Design**
 - **Material Design**: Clean, modern interface following Google's design principles
 - **Flutter-Style Theming**: Consistent blue/red/green color scheme
 - **Smooth Animations**: Hover effects, button transitions, and modal animations
 - **Accessibility**: High contrast colors and keyboard navigation support
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 hangman/
@@ -64,7 +65,7 @@ hangman/
 └── README.md                   # Project documentation
 ```
 
-## 🛠 Technologies Used
+##  Technologies Used
 
 ### **Flutter/Dart**
 - **Flutter SDK 3.26.0+**: Cross-platform mobile/web framework
@@ -82,7 +83,7 @@ hangman/
 - **Chrome DevTools**: Debugging and performance monitoring
 - **Git**: Version control and project management
 
-## 🚀 Installation & Setup
+##  Installation & Setup
 
 ### **Prerequisites**
 - Flutter SDK 3.0.0 or higher
@@ -109,9 +110,9 @@ flutter doctor
 flutter config --enable-web
 ```
 
-## 🎮 How to Run
+##  How to Run
 
-### **🌐 Option 1: Play Online (Recommended)**
+### ** Option 1: Play Online (Recommended)**
 **No installation required!**
 Simply visit: **[https://abishekbasnet.github.io/hangman/](https://abishekbasnet.github.io/hangman/)**
 
@@ -147,7 +148,7 @@ flutter devices
 flutter run -d emulator-5554
 ```
 
-## 🌐 GitHub Pages Deployment
+##  GitHub Pages Deployment
 
 This project is automatically deployed to GitHub Pages at: **[https://abishekbasnet.github.io/hangman/](https://abishekbasnet.github.io/hangman/)**
 
@@ -158,162 +159,30 @@ This project is automatically deployed to GitHub Pages at: **[https://abishekbas
 4. **No Build Process**: Pure HTML/CSS/JS for instant deployment
 
 ### **Features for GitHub Pages**
-- ✅ **Instant Loading**: No framework dependencies
-- ✅ **Mobile Optimized**: Responsive design for all devices
-- ✅ **Progressive Web App**: Installable on mobile devices
-- ✅ **SEO Optimized**: Meta tags and Open Graph support
-- ✅ **Game Statistics**: Local storage for progress tracking
-- ✅ **Offline Ready**: Cached resources for offline play
+-  **Instant Loading**: No framework dependencies
+   **Mobile Optimized**: Responsive design for all devices
+-  **Progressive Web App**: Installable on mobile devices
+-  **SEO Optimized**: Meta tags and Open Graph support
+-  **Game Statistics**: Local storage for progress tracking
+-  **Offline Ready**: Cached resources for offline play
 
 ### **Deployment Configuration Files**
 - **`.nojekyll`**: Disables Jekyll processing
 - **`404.html`**: Custom error page
 - **`GITHUB_PAGES.md`**: Deployment documentation
 
-## 🎯 Game Features
+##  Game Features
 
-### **🔤 Letter Mode**
+### * Letter Mode**
 - Click virtual keyboard keys to guess individual letters
 - Visual feedback shows correct (green) and incorrect (red) guesses
 - Physical keyboard support for desktop users
 - Smart duplicate prevention
 
-### **💭 Word Mode**
+### ** Word Mode**
 - Type complete words to guess instantly
 - Successful word guess wins the game immediately
 - Failed word guess counts as one wrong attempt
 - History tracking of guessed words
 
-### **📊 Game Mechanics**
-- **6 Wrong Guesses Maximum**: Traditional hangman rules
-- **Programming Vocabulary**: 250+ tech-related words
-- **Smart Word Selection**: Avoids recently used words
-- **Multiple Win Conditions**: Complete letter revelation or correct word guess
 
-### **🏆 Scoring System**
-- Instant win for correct word guesses
-- Progressive revelation for letter guessing
-- Wrong guess penalty system
-- Game over at 6 mistakes
-
-## 📱 Screenshots
-
-### Flutter App
-![Flutter Hangman Game](screenshots/flutter-app.png)
-
-### Web Version
-![Web Hangman Game](screenshots/web-version.png)
-
-### Mobile Responsive
-![Mobile Hangman Game](screenshots/mobile-responsive.png)
-
-## 🔧 Development
-
-### **Project Architecture**
-
-#### **Flutter App (`lib/`)**
-- **`main.dart`**: App initialization and Material theme setup
-- **`hangman_game.dart`**: Core game logic, UI components, and state management
-
-#### **Web Versions**
-- **`hangman_web.html`**: Original web implementation
-- **`hangman_flutter_style.html`**: Flutter-styled web version
-
-### **Key Components**
-
-#### **Game State Management**
-```dart
-// Core game variables
-String currentWord = '';
-Set<String> guessedLetters = {};
-Set<String> correctLetters = {};
-Set<String> wrongLetters = {};
-int wrongGuesses = 0;
-bool gameOver = false;
-```
-
-#### **Virtual Keyboard**
-```dart
-Widget _buildVirtualKeyboard() {
-  return Container(
-    child: Column(
-      children: [
-        _buildKeyboardRow('QWERTYUIOP'),
-        _buildKeyboardRow('ASDFGHJKL'),
-        _buildKeyboardRow('ZXCVBNM'),
-      ],
-    ),
-  );
-}
-```
-
-### **Customization**
-
-#### **Add New Words**
-```dart
-final List<String> _words = [
-  'FLUTTER',
-  'DART',
-  'YOUR_NEW_WORD',
-  // Add more words here
-];
-```
-
-#### **Modify Difficulty**
-```dart
-static const int _maxWrongGuesses = 6; // Change difficulty
-```
-
-#### **Styling**
-- Edit colors in CSS variables for web versions
-- Modify `Colors` constants in Flutter version
-
-## 🤝 Contributing
-
-### **How to Contribute**
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### **Contribution Guidelines**
-- Follow Flutter/Dart style guidelines
-- Add comments for complex logic
-- Test on multiple devices/browsers
-- Update README for new features
-
-### **Bug Reports**
-Please include:
-- Device/browser information
-- Steps to reproduce
-- Expected vs actual behavior
-- Screenshots if applicable
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Flutter Team**: For the amazing cross-platform framework
-- **Material Design**: For the beautiful UI guidelines
-- **Programming Community**: For word suggestions and feedback
-
-## 📞 Contact
-
-- **Developer**: AbishekBasnet
-- **Email**: abishekbasnet28@gmail.com
-- **GitHub**: [@AbishekBasnet](https://github.com/AbishekBasnet)
-- **Project Link**: [https://github.com/AbishekBasnet/hangman](https://github.com/AbishekBasnet/hangman)
-- **Live Demo**: [https://abishekbasnet.github.io/hangman/](https://abishekbasnet.github.io/hangman/)
-
----
-
-### 🎮 **Ready to Play?**
-
-**🌐 Play Online Now**: [https://abishekbasnet.github.io/hangman/](https://abishekbasnet.github.io/hangman/)
-
-Choose your preferred version and start guessing! Whether you prefer the Flutter app experience or the web version, you'll enjoy the same great gameplay with beautiful Material Design UI.
-
-**Happy Coding! 🚀**
