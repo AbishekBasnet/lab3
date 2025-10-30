@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game - Play Online</title>
+    <meta name="description" content="Play the ultimate Hangman word-guessing game online! Features virtual keyboard, dual game modes, and 250+ programming words.">
+    <meta name="author" content="AbishekBasnet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 500px;
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        p {
+            color: #555;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        .btn {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 10px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+        .github-btn {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+        }
+        .status {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Hangman Game</h1>
+        <div class="status">
+            <strong>✅ GitHub Pages Deployment Successful!</strong>
+        </div>
+        <p>Welcome to the ultimate Hangman word-guessing game!</p>
+        <p>Features include:</p>
+        <ul style="text-align: left; margin: 20px 0;">
+            <li>🎹 Virtual QWERTY keyboard</li>
+            <li>🎯 Dual game modes (letters & words)</li>
+            <li>📱 Mobile-responsive design</li>
+            <li>💻 250+ programming vocabulary</li>
+            <li>📊 Game statistics tracking</li>
+        </ul>
+        
+        <a href="./game.html" class="btn">🚀 Play Game</a>
+        <a href="https://github.com/AbishekBasnet/hangmanGame" target="_blank" class="btn github-btn">📋 View Code</a>
+        
+        <p style="margin-top: 30px; font-size: 14px; color: #777;">
+            Made with ❤️ by <a href="https://github.com/AbishekBasnet" target="_blank" style="color: #667eea;">AbishekBasnet</a>
+        </p>
+    </div>
+</body>
+</html>
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+
+        .github-link {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .github-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .wrong-counter {
+            background: #ffebee;
+            border: 2px solid #ffcdd2;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .wrong-counter-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #c62828;
+        }
+
+        .wrong-icon {
+            width: 24px;
+            height: 24px;
+            color: #c62828;
+        }
+
+        .word-display {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: 2px solid #90caf9;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .word-text {
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 12px;
+            color: #1565c0;
+            font-family: 'Courier New', monospace;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .guessed-letters-container {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .guessed-letters-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .correct-letters {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 8px;
+            padding: 8px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 8px;
+        }
+
+        .wrong-letters {
+            color: #c62828;
+            font-weight: bold;
+            padding: 8px;
+            background: rgba(244, 67, 54, 0.1);
+            border-radius: 8px;
+        }
+
+        .mode-toggle {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .toggle-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .toggle-btn.inactive {
+            background: #e0e0e0;
+            color: #757575;
+        }
+
+        .toggle-btn:hover:not(.active) {
+            background: #d5d5d5;
+            transform: translateY(-1px);
+        }
+
+        .keyboard-container {
+            padding: 15px;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+        }
+
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            gap: 5px;
+        }
+
+        .keyboard-key {
+            width: 40px;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .keyboard-key::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .keyboard-key:hover::before {
+            left: 100%;
+        }
+
+        .keyboard-key.default {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #495057;
+        }
+
+        .keyboard-key.correct {
+            background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+            color: #2e7d32;
+            animation: bounce 0.5s ease;
+        }
+
+        .keyboard-key.wrong {
+            background: linear-gradient(135deg, #ffcdd2 0%, #ef9a9a 100%);
+            color: #c62828;
+            animation: shake 0.5s ease;
+        }
+
+        .keyboard-key.disabled {
+            background: #bdbdbd;
+            color: #757575;
+            cursor: not-allowed;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .keyboard-key:hover:not(.disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+            20%, 40%, 60%, 80% { transform: translateX(3px); }
+        }
+
+        .word-guess-section {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            border: 2px solid #a5d6a7;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .word-guess-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .word-guess-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+
+        .word-input-container {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .word-input {
+            flex: 1;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            text-align: center;
+            text-transform: uppercase;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .word-input:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .guess-word-btn {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .guess-word-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .guessed-words {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+        }
+
+        .new-game-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .new-game-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .modal-title.win {
+            color: #4caf50;
+            animation: celebration 1s ease;
+        }
+
+        .modal-title.lose {
+            color: #f44336;
+        }
+
+        @keyframes celebration {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .modal-message {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #424242;
+            line-height: 1.5;
+        }
+
+        .modal-word {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 25px 0;
+            letter-spacing: 4px;
+            color: #667eea;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-btn.play-again {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .modal-btn.close {
+            background: linear-gradient(135deg, #757575 0%, #424242 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(117, 117, 117, 0.3);
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .message {
+            background: linear-gradient(135deg, #ffcdd2 0%, #ef9a9a 100%);
+            color: #c62828;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            display: none;
+            font-weight: bold;
+            animation: messageSlide 0.3s ease;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        .footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .github-link {
+                position: static;
+                display: inline-block;
+                margin-top: 10px;
+            }
+            
+            .word-text {
+                font-size: 28px;
+                letter-spacing: 8px;
+            }
+            
+            .keyboard-key {
+                width: 35px;
+                height: 45px;
+                font-size: 14px;
+            }
+            
+            .word-input-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .word-input {
+                font-size: 16px;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
+            
+            .game-container {
+                padding: 20px;
+                margin: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .keyboard-key {
+                width: 30px;
+                height: 40px;
+                font-size: 12px;
+            }
+            
+            .word-text {
+                font-size: 24px;
+                letter-spacing: 4px;
+            }
+            
+            .toggle-btn {
+                font-size: 14px;
+                padding: 10px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="https://github.com/AbishekBasnet/hangmanGame" target="_blank" class="github-link">
+            ⭐ Star on GitHub
+        </a>
+        <h1>🎮 Hangman Game</h1>
+        <p>Interactive word-guessing game with virtual keyboard and dual modes</p>
+    </div>
+
+    <!-- Main Game Container -->
+    <div class="main-container">
+        <div class="game-container">
+            <!-- Wrong Guesses Counter -->
+            <div class="wrong-counter">
+                <svg class="wrong-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+                <span class="wrong-counter-text">Wrong guesses: <span id="wrongCount">0</span> / 6</span>
+            </div>
+
+            <!-- Word Display -->
+            <div class="word-display">
+                <div class="word-text" id="wordDisplay">_ _ _ _ _ _</div>
+            </div>
+
+            <!-- Guessed Letters Display -->
+            <div class="guessed-letters-container">
+                <div class="guessed-letters-title">📝 Guessed Letters</div>
+                <div class="correct-letters" id="correctLetters">
+                    ✅ Correct: <span id="correctList">None yet</span>
+                </div>
+                <div class="wrong-letters" id="wrongLetters">
+                    ❌ Wrong: <span id="wrongList">None yet</span>
+                </div>
+            </div>
+
+            <!-- Message Display -->
+            <div class="message" id="message"></div>
+
+            <!-- Input Section -->
+            <div id="inputSection">
+                <!-- Mode Toggle -->
+                <div class="mode-toggle">
+                    <button class="toggle-btn active" id="letterModeBtn" onclick="switchToLetterMode()">
+                        🔤 Letters
+                    </button>
+                    <button class="toggle-btn inactive" id="wordModeBtn" onclick="switchToWordMode()">
+                        💭 Word
+                    </button>
+                </div>
+
+                <!-- Virtual Keyboard -->
+                <div class="keyboard-container" id="keyboardContainer">
+                    <div class="keyboard-row" id="keyboardRow1"></div>
+                    <div class="keyboard-row" id="keyboardRow2"></div>
+                    <div class="keyboard-row" id="keyboardRow3"></div>
+                </div>
+
+                <!-- Word Guess Section -->
+                <div class="word-guess-section" id="wordGuessSection">
+                    <div class="word-guess-title">🎯 Guess the whole word:</div>
+                    <div class="word-input-container">
+                        <input type="text" id="wordInput" class="word-input" placeholder="Enter the word...">
+                        <button class="guess-word-btn" onclick="guessWord()">Guess Word</button>
+                    </div>
+                    <div class="guessed-words" id="guessedWords"></div>
+                </div>
+            </div>
+
+            <!-- New Game Button -->
+            <button class="new-game-btn" onclick="startNewGame()">🎲 New Game</button>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+        🎮 Games Played: <span id="gamesPlayed">0</span> | 
+        🏆 Games Won: <span id="gamesWon">0</span> | 
+        📊 Win Rate: <span id="winRate">0%</span>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Made with ❤️ by <a href="https://github.com/AbishekBasnet" target="_blank">AbishekBasnet</a> | 
+        <a href="https://github.com/AbishekBasnet/hangmanGame" target="_blank">View Source Code</a>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div class="modal-overlay" id="gameOverModal">
+        <div class="modal-content">
+            <div class="modal-title" id="modalTitle">YOU WON!</div>
+            <div class="modal-message" id="modalMessage">Congratulations! You guessed the word!</div>
+            <div class="modal-word" id="modalWord">FLUTTER</div>
+            <div>Would you like to play again?</div>
+            <div class="modal-buttons">
+                <button class="modal-btn play-again" onclick="playAgain()">🎮 Play Again</button>
+                <button class="modal-btn close" onclick="closeModal()">✖️ Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        const words = [
+            'FLUTTER', 'DART', 'MOBILE', 'ANDROID', 'PROGRAMMING', 'COMPUTER', 'KEYBOARD',
+            'SCREEN', 'DEVELOPER', 'SOFTWARE', 'HARDWARE', 'INTERNET', 'NETWORK', 'DATABASE',
+            'ALGORITHM', 'FUNCTION', 'VARIABLE', 'OBJECT', 'CLASS', 'METHOD', 'WIDGET',
+            'STATEFUL', 'STATELESS', 'SCAFFOLD', 'CONTAINER', 'COLUMN', 'ROW', 'BUTTON',
+            'TEXT', 'IMAGE', 'ANIMATION', 'NAVIGATION', 'ROUTING', 'MATERIAL', 'DESIGN',
+            'LAYOUT', 'RESPONSIVE', 'FRAMEWORK', 'LIBRARY', 'PACKAGE', 'DEPENDENCY', 'BUILD',
+            'COMPILE', 'DEBUG', 'RELEASE', 'TESTING', 'PERFORMANCE', 'OPTIMIZATION', 'MEMORY',
+            'STORAGE', 'FILE', 'DIRECTORY', 'PATH', 'URL', 'HTTP', 'API', 'JSON', 'XML',
+            'CSS', 'HTML', 'JAVASCRIPT', 'PYTHON', 'JAVA', 'KOTLIN', 'SWIFT', 'REACT',
+            'ANGULAR', 'VUE', 'NODE', 'EXPRESS', 'MONGODB', 'MYSQL', 'FIREBASE', 'CLOUD',
+            'SERVER', 'CLIENT', 'FRONTEND', 'BACKEND', 'FULLSTACK', 'AGILE', 'SCRUM',
+            'GITHUB', 'VERSION', 'CONTROL', 'MERGE', 'BRANCH', 'COMMIT', 'CLONE', 'FEATURE',
+            'JAVASCRIPT', 'TYPESCRIPT', 'WEBPACK', 'BABEL', 'ESLINT', 'PRETTIER', 'SASS',
+            'REDUX', 'CONTEXT', 'HOOKS', 'COMPONENT', 'PROPS', 'STATE', 'LIFECYCLE', 'RENDER',
+            'VIRTUAL', 'SHADOW', 'WEBPACK', 'ROLLUP', 'VITE', 'PARCEL', 'BUNDLER', 'MODULE',
+            'IMPORT', 'EXPORT', 'ASYNC', 'AWAIT', 'PROMISE', 'CALLBACK', 'CLOSURE', 'SCOPE',
+            'HOISTING', 'PROTOTYPE', 'INHERITANCE', 'POLYMORPHISM', 'ENCAPSULATION', 'ABSTRACTION',
+            'INTERFACE', 'GENERIC', 'TEMPLATE', 'DECORATOR', 'ANNOTATION', 'REFLECTION',
+            'SERIALIZATION', 'DESERIALIZATION', 'MARSHALLING', 'UNMARSHALLING', 'PARSING',
+            'TOKENIZATION', 'LEXICAL', 'SYNTAX', 'SEMANTIC', 'COMPILATION', 'INTERPRETATION',
+            'BYTECODE', 'ASSEMBLY', 'MACHINE', 'BINARY', 'HEXADECIMAL', 'DECIMAL', 'OCTAL',
+            'BOOLEAN', 'INTEGER', 'FLOAT', 'DOUBLE', 'STRING', 'CHARACTER', 'ARRAY', 'LIST',
+            'STACK', 'QUEUE', 'TREE', 'GRAPH', 'HASH', 'MAP', 'SET', 'DICTIONARY', 'TUPLE',
+            'STRUCT', 'UNION', 'ENUM', 'CONSTANT', 'LITERAL', 'EXPRESSION', 'STATEMENT',
+            'CONDITION', 'LOOP', 'ITERATION', 'RECURSION', 'FACTORIAL', 'FIBONACCI',
+            'SORTING', 'SEARCHING', 'FILTERING', 'MAPPING', 'REDUCING', 'TRANSFORMATION'
+        ];
+
+        let usedWords = [];
+        let currentWord = '';
+        let guessedLetters = new Set();
+        let correctLetters = new Set();
+        let wrongLetters = new Set();
+        let wrongGuesses = 0;
+        const maxWrongGuesses = 6;
+        let gameOver = false;
+        let isLetterMode = true;
+        let guessedWords = new Set();
+
+        // Stats
+        let gamesPlayed = parseInt(localStorage.getItem('hangman_gamesPlayed') || '0');
+        let gamesWon = parseInt(localStorage.getItem('hangman_gamesWon') || '0');
+
+        // Keyboard layout
+        const keyboardRows = [
+            'QWERTYUIOP',
+            'ASDFGHJKL',
+            'ZXCVBNM'
+        ];
+
+        // Initialize game
+        function startNewGame() {
+            // Select a random word that hasn't been used recently
+            let availableWords = words.filter(word => !usedWords.includes(word));
+            
+            if (availableWords.length === 0) {
+                usedWords = [];
+                availableWords = words;
+            }
+            
+            currentWord = availableWords[Math.floor(Math.random() * availableWords.length)];
+            usedWords.push(currentWord);
+            
+            if (usedWords.length > 20) {
+                usedWords = usedWords.slice(-20);
+            }
+
+            // Reset game state
+            guessedLetters.clear();
+            correctLetters.clear();
+            wrongLetters.clear();
+            guessedWords.clear();
+            wrongGuesses = 0;
+            gameOver = false;
+
+            // Update UI
+            updateDisplay();
+            updateKeyboard();
+            updateStats();
+            document.getElementById('wordInput').value = '';
+            document.getElementById('inputSection').style.display = 'block';
+            hideMessage();
+            closeModal();
+        }
+
+        function createKeyboard() {
+            keyboardRows.forEach((row, index) => {
+                const rowElement = document.getElementById(`keyboardRow${index + 1}`);
+                rowElement.innerHTML = '';
+                
+                for (let letter of row) {
+                    const key = document.createElement('button');
+                    key.className = 'keyboard-key default';
+                    key.textContent = letter;
+                    key.id = `key-${letter}`;
+                    key.onclick = () => selectLetter(letter);
+                    rowElement.appendChild(key);
+                }
+            });
+        }
+
+        function selectLetter(letter) {
+            if (gameOver || !isLetterMode) return;
+            
+            const key = document.getElementById(`key-${letter}`);
+            if (key.classList.contains('disabled')) return;
+            
+            makeGuess(letter);
+        }
+
+        function makeGuess(letter) {
+            if (gameOver || !letter) return;
+
+            letter = letter.toUpperCase();
+            
+            if (guessedLetters.has(letter)) {
+                showMessage(`You already guessed "${letter}"!`);
+                return;
+            }
+
+            guessedLetters.add(letter);
+            
+            if (currentWord.includes(letter)) {
+                correctLetters.add(letter);
+                
+                // Check if player won
+                if (currentWord.split('').every(char => correctLetters.has(char))) {
+                    gameOver = true;
+                    gamesWon++;
+                    localStorage.setItem('hangman_gamesWon', gamesWon.toString());
+                    showGameOverModal(true);
+                }
+            } else {
+                wrongLetters.add(letter);
+                wrongGuesses++;
+                
+                // Check if player lost
+                if (wrongGuesses >= maxWrongGuesses) {
+                    gameOver = true;
+                    showGameOverModal(false);
+                }
+            }
+
+            updateDisplay();
+            updateKeyboard();
+            hideMessage();
+        }
+
+        function guessWord() {
+            if (gameOver) return;
+            
+            const wordInput = document.getElementById('wordInput');
+            let word = wordInput.value.toUpperCase().trim();
+            
+            if (word.length < 2) {
+                showMessage('Please enter a word with at least 2 letters!');
+                return;
+            }
+
+            if (guessedWords.has(word)) {
+                showMessage(`You already guessed "${word}"!`);
+                return;
+            }
+
+            guessedWords.add(word);
+            
+            if (word === currentWord) {
+                // Correct word guess - player wins
+                gameOver = true;
+                gamesWon++;
+                localStorage.setItem('hangman_gamesWon', gamesWon.toString());
+                // Add all letters to correct letters for display
+                for (let letter of currentWord.split('')) {
+                    correctLetters.add(letter);
+                }
+                showGameOverModal(true);
+            } else {
+                // Wrong word guess - counts as wrong guess
+                wrongGuesses++;
+                
+                if (wrongGuesses >= maxWrongGuesses) {
+                    gameOver = true;
+                    showGameOverModal(false);
+                }
+            }
+
+            updateDisplay();
+            updateKeyboard();
+            updateGuessedWords();
+            wordInput.value = '';
+            hideMessage();
+        }
+
+        function updateDisplay() {
+            // Update word display
+            const wordDisplay = currentWord.split('').map(char => 
+                correctLetters.has(char) ? char : '_'
+            ).join(' ');
+            document.getElementById('wordDisplay').textContent = wordDisplay;
+
+            // Update wrong guesses counter
+            document.getElementById('wrongCount').textContent = wrongGuesses;
+
+            // Update guessed letters
+            const correctList = correctLetters.size > 0 ? Array.from(correctLetters).join(', ') : 'None yet';
+            const wrongList = wrongLetters.size > 0 ? Array.from(wrongLetters).join(', ') : 'None yet';
+
+            document.getElementById('correctList').textContent = correctList;
+            document.getElementById('wrongList').textContent = wrongList;
+
+            // Hide input section if game is over
+            if (gameOver) {
+                document.getElementById('inputSection').style.display = 'none';
+                gamesPlayed++;
+                localStorage.setItem('hangman_gamesPlayed', gamesPlayed.toString());
+                updateStats();
+            }
+        }
+
+        function updateKeyboard() {
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            
+            for (let letter of alphabet) {
+                const key = document.getElementById(`key-${letter}`);
+                if (!key) continue;
+                
+                // Reset classes
+                key.className = 'keyboard-key';
+                
+                if (guessedLetters.has(letter)) {
+                    key.classList.add('disabled');
+                    if (correctLetters.has(letter)) {
+                        key.classList.add('correct');
+                    } else if (wrongLetters.has(letter)) {
+                        key.classList.add('wrong');
+                    }
+                } else {
+                    key.classList.add('default');
+                }
+            }
+        }
+
+        function updateGuessedWords() {
+            const guessedWordsElement = document.getElementById('guessedWords');
+            if (guessedWords.size > 0) {
+                guessedWordsElement.textContent = `Guessed words: ${Array.from(guessedWords).join(', ')}`;
+            } else {
+                guessedWordsElement.textContent = '';
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('gamesPlayed').textContent = gamesPlayed;
+            document.getElementById('gamesWon').textContent = gamesWon;
+            const winRate = gamesPlayed > 0 ? Math.round((gamesWon / gamesPlayed) * 100) : 0;
+            document.getElementById('winRate').textContent = winRate + '%';
+        }
+
+        function switchToLetterMode() {
+            isLetterMode = true;
+            document.getElementById('letterModeBtn').className = 'toggle-btn active';
+            document.getElementById('wordModeBtn').className = 'toggle-btn inactive';
+            document.getElementById('keyboardContainer').style.display = 'block';
+            document.getElementById('wordGuessSection').classList.remove('active');
+        }
+
+        function switchToWordMode() {
+            isLetterMode = false;
+            document.getElementById('letterModeBtn').className = 'toggle-btn inactive';
+            document.getElementById('wordModeBtn').className = 'toggle-btn active';
+            document.getElementById('keyboardContainer').style.display = 'none';
+            document.getElementById('wordGuessSection').classList.add('active');
+        }
+
+        function showGameOverModal(hasWon) {
+            const modal = document.getElementById('gameOverModal');
+            const title = document.getElementById('modalTitle');
+            const message = document.getElementById('modalMessage');
+            const word = document.getElementById('modalWord');
+
+            if (hasWon) {
+                title.textContent = 'YOU WON! 🎉';
+                title.className = 'modal-title win';
+                message.textContent = 'Congratulations! You guessed the word!';
+            } else {
+                title.textContent = 'YOU LOST! 😢';
+                title.className = 'modal-title lose';
+                message.textContent = 'Game Over! The word was:';
+            }
+
+            word.textContent = currentWord;
+            modal.style.display = 'flex';
+        }
+
+        function playAgain() {
+            startNewGame();
+        }
+
+        function closeModal() {
+            document.getElementById('gameOverModal').style.display = 'none';
+        }
+
+        function showMessage(text) {
+            const messageEl = document.getElementById('message');
+            messageEl.textContent = text;
+            messageEl.className = 'message show';
+            
+            setTimeout(() => {
+                hideMessage();
+            }, 3000);
+        }
+
+        function hideMessage() {
+            const messageEl = document.getElementById('message');
+            messageEl.className = 'message';
+        }
+
+        // Event listeners
+        document.getElementById('wordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                guessWord();
+            }
+        });
+
+        document.getElementById('wordInput').addEventListener('input', function(e) {
+            e.target.value = e.target.value.toUpperCase();
+        });
+
+        // Physical keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (gameOver || !isLetterMode) return;
+            
+            const letter = e.key.toUpperCase();
+            if (letter >= 'A' && letter <= 'Z') {
+                e.preventDefault();
+                selectLetter(letter);
+            }
+        });
+
+        // Initialize game
+        document.addEventListener('DOMContentLoaded', function() {
+            createKeyboard();
+            updateStats();
+            startNewGame();
+        });
+    </script>
+</body>
+</html>
